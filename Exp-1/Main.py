@@ -19,10 +19,32 @@ import pathlib as Path
 #     for file in files:
 #         print(os.path.join(root,file))
 
-df = pd.read_csv("C:\\Users\\devel\\OneDrive\\Documents\\DataWareHousing\\Exp-1\\sp500_data\\all_stocks_5yr.csv")
+# df = pd.read_csv("C:\\Users\\devel\\OneDrive\\Documents\\DataWareHousing\\Exp-1\\sp500_data\\all_stocks_5yr.csv")
 
-print(df.head())
-print(df.columns)
-print(df.shape)
-print(df.dtypes)
-print(df.isnull().sum())
+# print(df.head())
+# print(df.columns)
+# print(df.shape)
+# print(df.dtypes)
+# print(df.isnull().sum())
+
+
+
+output_path = Path("../data/processed")
+output_path.mkdir(parents=True, exist_ok=True)
+
+dim_date.to_csv(
+    output_path / "dim_date.csv",
+    index=False
+)
+
+dim_company.to_csv(
+    output_path / "dim_company.csv",
+    index=False
+)
+
+fact_stock_price.to_csv(
+    output_path / "fact_stock_price.csv",
+    index=False
+)
+
+print("Transformed data saved!")
