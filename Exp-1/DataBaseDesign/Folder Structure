@@ -1,0 +1,9 @@
+PostgreSQL
+│
+└── sp500_warehouse          ← Database
+     │
+     └── warehouse            ← Database schema
+          │
+          ├── dim_date
+          ├── dim_company
+          └── fact_stock_price
