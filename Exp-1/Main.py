@@ -17,3 +17,7 @@ extract_path = "./sp500_data"
 df = pd.read_csv("C:\\Users\\devel\\OneDrive\\Documents\\DataWareHousing\\Exp-1\\sp500_data\\all_stocks_5yr.csv")
 
 print(df.head())
+print(df.columns)
+print(df.shape)
+print(df.dtypes)
+print(df.isnull().sum())
