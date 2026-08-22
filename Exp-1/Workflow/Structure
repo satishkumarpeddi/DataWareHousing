@@ -1,0 +1,13 @@
+CSV
+ ↓
+STAGING
+ ↓
+Data Quality Checks
+ ↓
+DIM_COMPANY
+ ↓
+DIM_DATE
+ ↓
+FACT_STOCK_PRICES
+ ↓
+Analytics
