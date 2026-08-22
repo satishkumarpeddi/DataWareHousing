@@ -1,7 +1,12 @@
 import zipfile
 import os
 import pandas as pd
-extract_path = "./sp500_data"
+import pathlib as Path
+
+# zip_path = Path("../data/raw/archive.zip")
+# extract_path = Path("../data/raw/extracted")
+
+# extract_path.mkdir(parents=True,exist_ok=True)
 
 # # Pass the full path directly into the ZipFile tool
 # with zipfile.ZipFile("c:\\Users\\devel\\OneDrive\\Documents\\DataWareHousing\\Exp-1\\archive.zip", "r") as zip_ref:
