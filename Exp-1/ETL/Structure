@@ -1,0 +1,21 @@
+RAW S&P 500
+     │
+     ▼
+  EXTRACT
+     │
+     ▼
+  TRANSFORM
+     │
+     ├── Clean dates
+     ├── Clean prices
+     ├── Handle NULLs
+     ├── Remove duplicates
+     ├── Generate date keys
+     ├── Generate company keys
+     └── Calculate daily return
+     │
+     ▼
+    LOAD
+     │
+     ▼
+PostgreSQL Warehouse
