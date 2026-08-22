@@ -1,6 +1,6 @@
 import zipfile
 import os
-import pandas
+import pandas as pd
 extract_path = "./sp500_data"
 
 # # Pass the full path directly into the ZipFile tool
@@ -14,4 +14,6 @@ extract_path = "./sp500_data"
 #     for file in files:
 #         print(os.path.join(root,file))
 
+df = pd.read_csv("C:\\Users\\devel\\OneDrive\\Documents\\DataWareHousing\\Exp-1\\sp500_data\\all_stocks_5yr.csv")
 
+print(df.head())
