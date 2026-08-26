@@ -155,40 +155,40 @@ The project is designed to demonstrate practical knowledge of:
                      ┌────────────────────────────┐
                      │       DATA QUALITY         │
                      │                            │
-                     │ NULL checks                 │
-                     │ Duplicate checks            │
-                     │ Price validation            │
-                     │ Date validation             │
-                     │ Volume validation           │
+                     │ NULL checks                │
+                     │ Duplicate checks           │
+                     │ Price validation           │
+                     │ Date validation            │
+                     │ Volume validation          │
                      └─────────────┬──────────────┘
                                    │
                                    ▼
                      ┌────────────────────────────┐
-                     │        ETL ENGINE           │
+                     │        ETL ENGINE          │
                      │                            │
                      │ Python + Pandas + SQL      │
                      │ Extract                    │
                      │ Transform                  │
                      │ Validate                   │
-                     │ Load                      │
+                     │ Load                       │
                      └─────────────┬──────────────┘
                                    │
                                    ▼
-             ┌──────────────────────────────────────────┐
-             │             DATA WAREHOUSE               │
-             │                                          │
+             ┌─────────────────────────────────────────┐
+             │             DATA WAREHOUSE              │
+             │                                         │
              │  ┌──────────────┐  ┌──────────────┐     │
              │  │   dim_date   │  │ dim_company  │     │
              │  └──────┬───────┘  └──────┬───────┘     │
              │         │                 │             │
              │         └────────┬────────┘             │
              │                  ▼                      │
-             │       ┌─────────────────────┐          │
-             │       │ fact_stock_prices   │          │
-             │       └─────────────────────┘          │
-             │                                          │
+             │       ┌─────────────────────┐           │
+             │       │ fact_stock_prices   │           │
+             │       └─────────────────────┘           │
+             |                                         │
              │  ETL Audit / Error Logging              │
-             └──────────────────┬───────────────────────┘
+             └──────────────────┬──────────────────────┘
                                 │
                                 ▼
                      ┌────────────────────────────┐
@@ -198,7 +198,7 @@ The project is designed to demonstrate practical knowledge of:
                      │ Monthly Performance        │
                      │ Moving Averages            │
                      │ Volatility                 │
-                     │ Company Rankings            │
+                     │ Company Rankings           │
                      │ Sector Performance         │
                      └─────────────┬──────────────┘
                                    │
