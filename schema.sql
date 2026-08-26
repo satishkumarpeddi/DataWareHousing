@@ -93,7 +93,7 @@ BEGIN
         week_of_year
     )
     SELECT DISTINCT
-        TO_CHAR(date, 'YYYYMMDD')::INTEGER,
+        TO_CHAR(date, 'YYYYMMDD')::INTEGER, --Type Casting
         date,
         EXTRACT(YEAR FROM date)::INTEGER,
         EXTRACT(QUARTER FROM date)::INTEGER,
