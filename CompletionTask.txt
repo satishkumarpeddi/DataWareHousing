@@ -1,0 +1,12 @@
+Day:-2 
+
+    ☑ staging.stock_prices
+    ☑ staging.data_quality_errors
+    ☑ staging.load_metadata
+    ☑ NULL validation
+    ☑ Price validation
+    ☑ OHLC validation
+    ☑ Volume validation
+    ☑ Duplicate detection
+    ☑ Error logging
+    ☑ Load tracking
