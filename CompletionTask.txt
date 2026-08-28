@@ -23,3 +23,13 @@ sql/
 ├── 07_data_quality.sql
 ├── 08_analytics.sql
 └── 09_indexes.sql
+
+
+Analytics --> Completed Adding The `Schema` to Analytics Folder 
+
+analytics/
+├── daily_returns.sql
+├── monthly_performance.sql
+├── company_performance.sql
+├── market_summary.sql
+└── volatility.sql
