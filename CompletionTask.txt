@@ -10,3 +10,16 @@ Day:-2
     ☑ Duplicate detection
     ☑ Error logging
     ☑ Load tracking
+
+Sql --> File Modification And Adding 'SQL' data to the files in sql 
+
+sql/
+├── 01_database.sql
+├── 02_schemas.sql
+├── 03_staging.sql
+├── 04_dimensions.sql
+├── 05_facts.sql
+├── 06_etl.sql
+├── 07_data_quality.sql
+├── 08_analytics.sql
+└── 09_indexes.sql
