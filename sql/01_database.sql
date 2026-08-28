@@ -1,0 +1,1 @@
+CREATE DATABASE sp500_dw;
