@@ -1,0 +1,13 @@
+# Data Processing
+
+pandas>=2.2,<3.0
+numpy>=1.26,<3.0
+
+# PostgreSQL Database
+
+psycopg2-binary>=2.9,<3.0
+SQLAlchemy>=2.0,<3.0
+
+# Environment Configuration
+
+python-dotenv>=1.0,<2.0
