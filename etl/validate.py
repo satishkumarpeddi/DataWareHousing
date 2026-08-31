@@ -7,7 +7,6 @@ it into the data warehouse.
 
 import pandas as pd
 
-
 REQUIRED_COLUMNS = [
     "date",
     "open_price",
