@@ -1,52 +1,33 @@
-"""
-Data Transformation Module
-
-Transforms extracted stock market data into the
-standardized format used by the data warehouse.
-"""
-
 import pandas as pd
 
 
-# =========================================================
-# TRANSFORMATION
-# =========================================================
-
-def transform_data(df):
+def transform_data(df: pd.DataFrame) -> pd.DataFrame:
     """
-    Transform extracted stock data.
+    Transform raw stock data into the structure required
+    by the staging.stock_prices table.
 
-    Expected input columns:
+    Parameters
+    ----------
+    df : pandas.DataFrame
+        Raw stock data.
 
-        date
-        open_price
-        high_price
-        low_price
-        close_price
-        volume
-        ticker
-
-    Returns:
-        pandas.DataFrame
+    Returns
+    -------
+    pandas.DataFrame
+        Transformed stock data.
     """
-
-    if df is None:
-        raise ValueError("Input dataframe is None")
-
-    if df.empty:
-        raise ValueError("Input dataframe is empty")
 
     print("Starting data transformation...")
 
-    # -----------------------------------------------------
+    # --------------------------------------------------------
     # Make a copy
-    # -----------------------------------------------------
+    # --------------------------------------------------------
 
     df = df.copy()
 
-    # -----------------------------------------------------
-    # Standardize column names
-    # -----------------------------------------------------
+    # --------------------------------------------------------
+    # Normalize column names
+    # --------------------------------------------------------
 
     df.columns = (
         df.columns
@@ -54,28 +35,11 @@ def transform_data(df):
         .str.lower()
     )
 
-    # -----------------------------------------------------
-    # Handle possible original dataset column names
-    # -----------------------------------------------------
+    # --------------------------------------------------------
+    # Validate required source columns
+    # --------------------------------------------------------
 
-    rename_map = {
-        "open": "open_price",
-        "high": "high_price",
-        "low": "low_price",
-        "close": "close_price",
-        "name": "ticker"
-    }
-
-    df.rename(
-        columns=rename_map,
-        inplace=True
-    )
-
-    # -----------------------------------------------------
-    # Required columns
-    # -----------------------------------------------------
-
-    required_columns = [
+    required_columns = {
         "date",
         "open_price",
         "high_price",
@@ -83,42 +47,41 @@ def transform_data(df):
         "close_price",
         "volume",
         "ticker"
-    ]
+    }
 
-    missing_columns = [
-        column
-        for column in required_columns
-        if column not in df.columns
-    ]
+    missing_columns = required_columns - set(df.columns)
 
     if missing_columns:
-
         raise ValueError(
-            "Missing required columns after "
-            f"transformation: {missing_columns}\n"
-            f"Available columns: {list(df.columns)}"
+            f"Missing required columns: {missing_columns}"
         )
 
-    # -----------------------------------------------------
-    # Select required columns
-    # -----------------------------------------------------
+    # --------------------------------------------------------
+    # Rename columns
+    # --------------------------------------------------------
 
-    df = df[
-        required_columns
-    ].copy()
+    column_mapping = {
+        "open_price": "open_price",
+        "high_price": "high_price",
+        "low_price": "low_price",
+        "close_price": "close_price",
+        "ticker": "ticker"
+    }
 
-    # -----------------------------------------------------
+    df = df.rename(columns=column_mapping)
+
+    # --------------------------------------------------------
     # Convert date
-    # -----------------------------------------------------
+    # --------------------------------------------------------
 
     df["date"] = pd.to_datetime(
         df["date"],
         errors="coerce"
-    )
+    ).dt.date
 
-    # -----------------------------------------------------
-    # Convert price columns to numeric
-    # -----------------------------------------------------
+    # --------------------------------------------------------
+    # Convert price columns
+    # --------------------------------------------------------
 
     price_columns = [
         "open_price",
@@ -134,18 +97,18 @@ def transform_data(df):
             errors="coerce"
         )
 
-    # -----------------------------------------------------
-    # Convert volume to numeric
-    # -----------------------------------------------------
+    # --------------------------------------------------------
+    # Convert volume
+    # --------------------------------------------------------
 
     df["volume"] = pd.to_numeric(
         df["volume"],
         errors="coerce"
     )
 
-    # -----------------------------------------------------
-    # Clean ticker
-    # -----------------------------------------------------
+    # --------------------------------------------------------
+    # Normalize ticker
+    # --------------------------------------------------------
 
     df["ticker"] = (
         df["ticker"]
@@ -154,69 +117,31 @@ def transform_data(df):
         .str.upper()
     )
 
-    # -----------------------------------------------------
-    # Remove completely empty rows
-    # -----------------------------------------------------
+    # --------------------------------------------------------
+    # Keep only staging columns
+    # --------------------------------------------------------
 
-    df.dropna(
-        how="all",
-        inplace=True
-    )
+    df = df[
+        [
+            "date",
+            "open_price",
+            "high_price",
+            "low_price",
+            "close_price",
+            "volume",
+            "ticker"
+        ]
+    ]
 
-    # -----------------------------------------------------
+    # --------------------------------------------------------
     # Sort data
-    # -----------------------------------------------------
+    # --------------------------------------------------------
 
-    df.sort_values(
-        by=["ticker", "date"],
-        inplace=True
-    )
+    df = df.sort_values(
+        by=["ticker", "date"]
+    ).reset_index(drop=True)
 
-    # -----------------------------------------------------
-    # Reset index
-    # -----------------------------------------------------
-
-    df.reset_index(
-        drop=True,
-        inplace=True
-    )
-
-    print(
-        f"Records transformed: {len(df)}"
-    )
-
-    return df
-
-
-# =========================================================
-# MAIN TEST
-# =========================================================
-
-if __name__ == "__main__":
-
-    from etl.extract import extract_data
-
-    print("=== TRANSFORMATION TEST ===")
-
-    raw_data = extract_data()
-
-    transformed_data = transform_data(
-        raw_data
-    )
-
-    print("\nTransformed columns:")
-
-    print(
-        transformed_data.columns.tolist()
-    )
-
-    print("\nFirst 5 records:")
-
-    print(
-        transformed_data.head()
-    )
-
-    print("\nData types:")
+    print(f"Records transformed: {len(df)}")
 
     print(
         transformed_data.dtypes
