@@ -143,4 +143,6 @@ def transform_data(df: pd.DataFrame) -> pd.DataFrame:
 
     print(f"Records transformed: {len(df)}")
 
-    return df
+    print(
+        transformed_data.dtypes
+    )

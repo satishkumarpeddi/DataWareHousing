@@ -9,7 +9,7 @@ def main():
 
     # Extract
     df = extract_data(
-        "data/raw/stocks.csv"
+        "data/data/processed"
     )
 
     # Transform

@@ -153,7 +153,7 @@ The extraction stage reads the raw S&P 500 CSV file into a Pandas DataFrame.
 ### Input
 
 ```text
-data/raw/stocks.csv
+data/data/processed
 ```
 
 ### Output
