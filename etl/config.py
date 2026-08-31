@@ -7,7 +7,7 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-RAW_FILE = BASE_DIR / "data" / "raw" / "stocks.csv"
+RAW_FILE = BASE_DIR / "data" / "processed" / "stocks_clean.csv"
 
 DB_HOST = os.getenv("DB_HOST", "localhost")
 DB_PORT = os.getenv("DB_PORT", "5432")
