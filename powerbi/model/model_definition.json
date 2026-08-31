@@ -1,0 +1,77 @@
+{
+  "project": "S&P500 Analytics",
+  "database": {
+    "type": "PostgreSQL",
+    "database": "DataWarehouse",
+    "server": "localhost",
+    "port": 5432
+  },
+  "views": {
+    "market_summary": {
+      "schema": "analytics",
+      "table": "market_summary",
+      "purpose": "Executive KPI summary"
+    },
+    "company_performance": {
+      "schema": "analytics",
+      "table": "company_performance",
+      "purpose": "Company-level performance metrics"
+    },
+    "daily_returns": {
+      "schema": "analytics",
+      "table": "daily_returns",
+      "purpose": "Daily stock price and return analysis"
+    },
+    "monthly_performance": {
+      "schema": "analytics",
+      "table": "monthly_performance",
+      "purpose": "Monthly stock performance"
+    },
+    "volatility": {
+      "schema": "analytics",
+      "table": "volatility",
+      "purpose": "Stock volatility analysis"
+    }
+  },
+  "dashboard_pages": [
+    {
+      "name": "Market Overview",
+      "visuals": [
+        "Total Companies",
+        "Trading Days",
+        "Average Close Price",
+        "Total Trading Volume",
+        "Market Price Trend",
+        "Top 10 Stocks",
+        "Most Volatile Stocks"
+      ]
+    },
+    {
+      "name": "Stock Analysis",
+      "visuals": [
+        "Price Trend",
+        "Daily Returns",
+        "High Low Analysis",
+        "Trading Volume"
+      ]
+    },
+    {
+      "name": "Company Rankings",
+      "visuals": [
+        "Top Stocks by Average Price",
+        "Top Stocks by Volume",
+        "Most Volatile Stocks",
+        "Highest and Lowest Prices"
+      ]
+    },
+    {
+      "name": "Data Quality",
+      "visuals": [
+        "Total Records",
+        "NULL Records",
+        "Duplicate Records",
+        "Invalid Price Records"
+      ]
+    }
+  ]
+}
