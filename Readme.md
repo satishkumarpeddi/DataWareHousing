@@ -436,7 +436,7 @@ Read source data.
 ```python
 import pandas as pd
 
-df = pd.read_csv("data/raw/stocks.csv")
+df = pd.read_csv("data/data/processed")
 ```
 
 ---
