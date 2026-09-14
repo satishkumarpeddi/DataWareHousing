@@ -12,5 +12,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY etl/ ./etl/
 COPY sql/ ./sql/
 COPY analytics/ ./analytics/
+COPY data/ ./data/
 
 CMD ["python", "-m", "etl.pipeline"]
