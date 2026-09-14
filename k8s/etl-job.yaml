@@ -1,0 +1,28 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: datawarehouse-etl
+  namespace: datawarehouse
+spec:
+  backoffLimit: 2
+  ttlSecondsAfterFinished: 3600
+  template:
+    metadata:
+      labels:
+        app: datawarehouse-etl
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: etl
+          image: ghcr.io/satishkumarpeddi/datawarehouse-etl:latest
+          imagePullPolicy: Always
+          envFrom:
+            - secretRef:
+                name: datawarehouse-etl-db
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 1
+              memory: 1Gi
