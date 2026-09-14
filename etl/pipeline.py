@@ -1,6 +1,6 @@
-from extract import extract_data
-from transform import transform_data
-from validate import validate_data
+from etl.extract import extract_data
+from etl.transform import transform_data
+from etl.validate import validate_data
 
 
 def main():
@@ -9,7 +9,7 @@ def main():
 
     # Extract
     df = extract_data(
-        "data/data/processed"
+        "data/raw/stocks.csv"
     )
 
     # Transform
