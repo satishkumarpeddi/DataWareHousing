@@ -1,1 +1,29 @@
+# Python
+__pycache__/
 *.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.venv/
+venv/
+env/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Database backups
+backups/
+*.dump
+*.sql.gz
+*.backup
+
+# Logs
+*.log
+logs/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
