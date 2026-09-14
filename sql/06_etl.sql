@@ -3,6 +3,9 @@ LANGUAGE plpgsql
 AS $$
 BEGIN
 
+    -- Reset quality-error quarantine for the current ETL run
+    TRUNCATE TABLE staging.data_quality_errors;
+
     -- Quarantine invalid OHLC rows
     INSERT INTO staging.data_quality_errors (
         error_type,
